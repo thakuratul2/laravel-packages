@@ -1,0 +1,20 @@
+{
+    "name": "hp/notification",
+    "description": "Push Notification Package",
+    "type": "library",
+    "license": "MIT",
+    "autoload":{
+        "psr-4": {
+            "Notification\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Atul Pratap Singh"
+        }
+    ],
+    "require": {
+        "php": "^7.3|^8.0",
+        "laravel/framework": "^8.0|^9.0|^10.0"
+    }
+}
