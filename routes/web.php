@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Notification\PushNotification;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/send-notification', function(PushNotification $pushNotification){
+    $message = request('message');
+
+    return response()->json($pushNotification->send($message));
+
 });
