@@ -15,8 +15,7 @@ class TimeAttendanceController extends Controller
     public function logTimeAttendance(Request $request)
     {
 
-        $userId = 1;
-       
+        $userId = Auth::user();
 
        
         $existingRecord = DB::table('time_attendance')
