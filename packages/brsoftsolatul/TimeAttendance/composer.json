@@ -3,6 +3,8 @@
     "description": "Time Based attendence",
     "license": "MIT",
     "type": "library",
+    "require": {},
+    "version": "0.0.1",
     "autoload": {
         "psr-4": {
             "brsoftsolatul\\TimeAttendance\\": "src/"
@@ -14,5 +16,11 @@
             "email": "pratapsinghatul111@gmail.com"
         }
     ],
-    "require": {}
+    "extra": {
+        "laravel": {
+            "providers": [
+                "brsoftsolatul\\TimeAttendance\\TimeAttendanceServiceProvider"
+            ]
+        }
+    }
 }
