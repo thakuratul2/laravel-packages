@@ -5,7 +5,7 @@
     "type": "library",
     "autoload": {
         "psr-4": {
-            "Brsoftsolatul\\TimeAttendence\\": "src/"
+            "brsoftsolatul\\TimeAttendance\\": "src/"
         }
     },
     "authors": [
