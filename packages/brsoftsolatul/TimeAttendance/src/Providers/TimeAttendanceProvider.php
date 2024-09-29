@@ -25,7 +25,7 @@ class TimeAttendanceProvider extends ServiceProvider
     {
         //
         $this->loadRoutesFrom(__DIR__.'/../Routes/web.php');
-        $this->loadViewsFrom(__DIR__.'/../Resources/views', 'TimeAttendance');
+        $this->loadViewsFrom(__DIR__.'/../Resources/views', 'timeattendance');
         $this->loadMigrationsFrom(__DIR__.'/../Database/migrations');
     }
 }
