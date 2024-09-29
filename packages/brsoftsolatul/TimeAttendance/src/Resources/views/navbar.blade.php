@@ -1,5 +1,3 @@
-<!-- resources/views/vendor/timeattendance/navbar.blade.php -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +11,11 @@
             font-size: 24px;
             cursor: pointer;
         }
+        .stopwatch {
+            font-size: 24px;
+            font-weight: bold;
+            margin-right: 20px;
+        }
     </style>
 </head>
 <body>
@@ -21,6 +24,11 @@
             <a class="navbar-brand" href="#">Navbar</a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <!-- Stopwatch display on the left of the clock icon -->
+                    <li class="nav-item">
+                        <span id="stopwatch" class="stopwatch" style="display:none;">00:00:00</span>
+                    </li>
+                    <!-- Clock icon -->
                     <li class="nav-item">
                         <span id="clock-icon" class="clock-icon">🕑</span>
                     </li>
@@ -37,11 +45,62 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+        let stopwatchInterval;
+        let stopwatchRunning = false;
+        let startTime;
+    
+        function startStopwatch() {
+            startTime = new Date(); // Store the start time
+            $('#stopwatch').show(); // Display the stopwatch
+    
+            // Update the stopwatch every second
+            stopwatchInterval = setInterval(function () {
+                const now = new Date();
+                const elapsedTime = new Date(now - startTime);
+    
+                // Format the elapsed time into H:i:s
+                const hours = String(elapsedTime.getUTCHours()).padStart(2, '0');
+                const minutes = String(elapsedTime.getUTCMinutes()).padStart(2, '0');
+                const seconds = String(elapsedTime.getUTCSeconds()).padStart(2, '0');
+                
+                $('#stopwatch').text(`${hours}:${minutes}:${seconds}`);
+            }, 1000);
+        }
+    
+        function stopStopwatch() {
+            clearInterval(stopwatchInterval); // Stop the stopwatch
+            stopwatchRunning = false;
+        }
+    
+        function getCurrentSystemTime() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0'); // Get hours in 24-hour format
+            const minutes = String(now.getMinutes()).padStart(2, '0'); // Get minutes
+            const seconds = String(now.getSeconds()).padStart(2, '0'); // Get seconds (optional)
+    
+            // Format the time as HH:MM:SS
+            return `${hours}:${minutes}:${seconds}`;
+        }
+    
         $(document).ready(function () {
             $('#clock-icon').on('click', function () {
+                if (!stopwatchRunning) {
+                    // Start the stopwatch
+                    stopwatchRunning = true;
+                    startStopwatch();
+                } else {
+                    // Stop the stopwatch
+                    stopStopwatch();
+                    $('#stopwatch').hide(); // Hide the stopwatch after stopping
+                }
+    
+                const localTime = getCurrentSystemTime(); // Get current system time
+    
+                // Send AJAX request to toggle time in/out
                 $.ajax({
                     url: '{{ route('toggle-time') }}',
                     type: 'POST',
+                    data: { local_time: localTime }, // Send local time as part of the request
                     dataType: 'json',
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -56,5 +115,6 @@
             });
         });
     </script>
+    
 </body>
 </html>
