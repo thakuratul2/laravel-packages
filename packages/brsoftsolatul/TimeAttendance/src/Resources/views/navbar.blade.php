@@ -50,25 +50,27 @@
         let startTime;
     
         function startStopwatch() {
-            startTime = new Date(); // Store the start time
-            $('#stopwatch').show(); // Display the stopwatch
-    
-            // Update the stopwatch every second
-            stopwatchInterval = setInterval(function () {
-                const now = new Date();
-                const elapsedTime = new Date(now - startTime);
-    
-                // Format the elapsed time into H:i:s
-                const hours = String(elapsedTime.getUTCHours()).padStart(2, '0');
-                const minutes = String(elapsedTime.getUTCMinutes()).padStart(2, '0');
-                const seconds = String(elapsedTime.getUTCSeconds()).padStart(2, '0');
-                
-                $('#stopwatch').text(`${hours}:${minutes}:${seconds}`);
-            }, 1000);
-        }
+    startTime = new Date(); 
+    $('#stopwatch').show(); 
+
+    const currentTime = getCurrentSystemTime();
+    $('#stopwatch').text(currentTime);
+
+    stopwatchInterval = setInterval(function () {
+        const now = new Date();
+        const elapsedTime = new Date(now - startTime);
+
+        const hours = String(elapsedTime.getUTCHours()).padStart(2, '0');
+        const minutes = String(elapsedTime.getUTCMinutes()).padStart(2, '0');
+        const seconds = String(elapsedTime.getUTCSeconds()).padStart(2, '0');
+
+        $('#stopwatch').text(`${hours}:${minutes}:${seconds}`);
+    }, 1000);
+}
+
     
         function stopStopwatch() {
-            clearInterval(stopwatchInterval); // Stop the stopwatch
+            clearInterval(stopwatchInterval); 
             stopwatchRunning = false;
         }
     
@@ -76,12 +78,12 @@
     const now = new Date();
     const year = now.getFullYear(); 
     const month = String(now.getMonth() + 1).padStart(2, '0');
-    const day = String(now.getDate()).padStart(2, '0'); // Get day of the month
-    const hours = String(now.getHours()).padStart(2, '0'); // Get hours in 24-hour format
-    const minutes = String(now.getMinutes()).padStart(2, '0'); // Get minutes
-    const seconds = String(now.getSeconds()).padStart(2, '0'); // Get seconds (optional)
+    const day = String(now.getDate()).padStart(2, '0'); 
+    const hours = String(now.getHours()).padStart(2, '0'); 
+    const minutes = String(now.getMinutes()).padStart(2, '0'); 
+    const seconds = String(now.getSeconds()).padStart(2, '0'); 
 
-    // Format the time as YYYY-MM-DD HH:MM:SS
+    
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }
 
