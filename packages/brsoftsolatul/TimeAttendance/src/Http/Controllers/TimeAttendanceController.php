@@ -10,43 +10,23 @@ use Illuminate\Support\Facades\Auth;
 
 class TimeAttendanceController extends Controller
 {
-    public function logTimeAttendance(Request $request)
+    public function logTimeAttendance()
     {
-        $userId = Auth::id();
-        $localTime = $request->input('local_time');
+        $userId = Auth::id(); 
 
-       
-        $existingRecord = DB::table('time_attendance')
-            ->where('user_id', $userId)
-            ->whereNull('time_out')
-            ->first();
+        // Check if there's an existing time-in record without time-out
+        $existingRecord = TimeAttendance::getExistingRecord($userId);
 
         if ($existingRecord) {
-          
-            DB::table('time_attendance')
-                ->where('id', $existingRecord->id)
-                ->update([
-                    'time_out' => $localTime,
-                    'updated_at' => now(),
-                ]);
+            // Log time-out if there's an existing record
+            $response = TimeAttendance::logTimeOut($existingRecord->id);
 
-            return response()->json([
-                'message' => 'Clock stopped. Time out recorded.',
-                'time_out' => $localTime,
-            ]);
+            return response()->json($response);
         } else {
-           
-            DB::table('time_attendance')->insert([
-                'user_id' => $userId,
-                'time_in' => $localTime, 
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+            // Log time-in if no existing record
+            $response = TimeAttendance::logTimeIn($userId);
 
-            return response()->json([
-                'message' => 'Clock started. Time in recorded.',
-                'time_in' => $localTime,
-            ]);
+            return response()->json($response);
         }
     }
 }
