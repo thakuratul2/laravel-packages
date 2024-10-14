@@ -5,9 +5,11 @@
     "type": "library",
     "require": {
         "php": "^7.4|^8.0",
-        "illuminate/support": "^8.0|^9.0|^10.0"
+        "illuminate/support": "^8.0|^9.0|^10.0",
+        "brsoftsol/time-attendance": "dev-main"
+
     },
-    "version": "0.0.1",
+    "version": "0.0.2",
     "autoload": {
         "psr-4": {
             "brsoftsolatul\\TimeAttendance\\": "src/"
@@ -19,6 +21,7 @@
             "email": "pratapsinghatul111@gmail.com"
         }
     ],
+
     "extra": {
         "laravel": {
             "providers": [
@@ -26,6 +29,16 @@
             ]
         }
     },
+
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+
+
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/thakuratul2/laravel-packages"
+        }
+    ]
+
 }
