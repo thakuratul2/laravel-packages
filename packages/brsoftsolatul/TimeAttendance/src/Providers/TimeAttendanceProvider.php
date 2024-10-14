@@ -16,6 +16,7 @@ class TimeAttendanceProvider extends ServiceProvider
     {
         //
         $this->app->register(RouteServiceProvider::class);
+        $this->app->register(TimeAttendanceProvider::class);
     }
 
     /**

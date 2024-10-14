@@ -1,18 +1,16 @@
 {
-    "name": "brsoftsolatul/time-attendence",
-    "description": "Time Based attendence",
+    "name": "brsoftsolatul/time-attendance",
+    "description": "Time-based attendance package",
     "license": "MIT",
     "type": "library",
     "require": {
         "php": "^7.4|^8.0",
-        "illuminate/support": "^8.0|^9.0|^10.0",
-        "brsoftsol/time-attendance": "dev-main"
-
+        "illuminate/support": "^8.0|^9.0|^10.0"
     },
     "version": "0.0.2",
     "autoload": {
         "psr-4": {
-            "brsoftsolatul\\TimeAttendance\\": "src/"
+            "Brsoftsolatul\\TimeAttendance\\": "src/"
         }
     },
     "authors": [
@@ -21,24 +19,13 @@
             "email": "pratapsinghatul111@gmail.com"
         }
     ],
-
     "extra": {
         "laravel": {
             "providers": [
-                "brsoftsolatul\\TimeAttendance\\TimeAttendanceServiceProvider"
+                "Brsoftsolatul\\TimeAttendance\\Providers\\TimeAttendanceProvider"
             ]
         }
     },
-
     "minimum-stability": "dev",
-    "prefer-stable": true,
-
-
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/thakuratul2/laravel-packages"
-        }
-    ]
-
+    "prefer-stable": true
 }
