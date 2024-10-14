@@ -15,14 +15,14 @@ class TimeAttendanceServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__.'/../Routes.php');
 
         $this->publishes([
-            __DIR__.'/../config/time-attendance.php' => config_path('time-attendance.php'),
+            __DIR__.'/../config/TimeAttendance.php' => config_path('TimeAttendance.php'),
         ]);
     }
 
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__.'/../config/time-attendance.php', 'time-attendance'
+            __DIR__.'/../config/TimeAttendance.php', 'TimeAttendance'
         );
     }
 }
