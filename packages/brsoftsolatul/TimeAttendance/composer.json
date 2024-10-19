@@ -1,5 +1,5 @@
 {
-    "name": "brsoftsolatul/time-attendance",
+    "name": "brsoftsolatul/timeattendance",
     "description": "Time-based attendance package",
     "license": "MIT",
     "type": "library",
@@ -10,7 +10,7 @@
     "version": "0.0.2",
     "autoload": {
         "psr-4": {
-            "Brsoftsolatul\\TimeAttendance\\": "src/"
+            "BRsoftsolatul\\TimeAttendance\\": "src/"
         }
     },
     "authors": [
@@ -22,7 +22,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Brsoftsolatul\\TimeAttendance\\Providers\\TimeAttendanceProvider"
+                "brsoftsolatul\\TimeAttendance\\Providers\\TimeAttendanceProvider"
             ]
         }
     },
